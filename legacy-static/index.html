@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RCN North America | Design Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header" id="siteHeader">
+      <div class="container nav-wrap">
+        <a href="#" class="logo">
+          <span class="logo-dot"></span>
+          RCN North America
+        </a>
+        <nav class="desktop-nav">
+          <a href="#about">About</a>
+          <a href="#ministries">Ministries</a>
+          <a href="#sermons">Sermons</a>
+          <a href="#locations">Locations</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">Menu</button>
+      </div>
+      <nav class="mobile-nav" id="mobileNav">
+        <a href="#about">About</a>
+        <a href="#ministries">Ministries</a>
+        <a href="#sermons">Sermons</a>
+        <a href="#locations">Locations</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container hero-content">
+          <p class="eyebrow reveal">Welcome to RCN North America</p>
+          <h1 class="reveal">Restoring the Apostolic Mandate with Clarity and Impact</h1>
+          <p class="hero-copy reveal">
+            A modern ministry platform for worship, discipleship, outreach, and community impact
+            across North America.
+          </p>
+          <div class="hero-actions reveal">
+            <a href="#" class="btn btn-primary">Watch Livestream</a>
+            <a href="#about" class="btn btn-ghost">Explore Mission</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="quick-links container reveal">
+        <a href="#sermons" class="quick-card">Latest Sermons</a>
+        <a href="#partnership" class="quick-card">Give & Partner</a>
+        <a href="#new-here" class="quick-card">I am New Here</a>
+        <a href="#locations" class="quick-card">Find a Location</a>
+      </section>
+
+      <section class="section container" id="about">
+        <div class="two-col">
+          <div class="stack reveal">
+            <p class="eyebrow">About us</p>
+            <h2>Our Mission</h2>
+            <p>
+              We are committed to reviving apostolic order, teaching the Word with accuracy, and
+              demonstrating the love of Christ through people-centered ministry experiences.
+            </p>
+            <ul class="feature-list">
+              <li>Intentional discipleship pathways</li>
+              <li>Scripture-centered teaching</li>
+              <li>Operational excellence in ministry service</li>
+            </ul>
+          </div>
+          <div class="cards-grid reveal">
+            <article class="soft-card">
+              <h3>Weekly Impact</h3>
+              <p class="metric" data-target="26">0</p>
+              <p>Active ministry expressions</p>
+            </article>
+            <article class="soft-card">
+              <h3>North American Reach</h3>
+              <p class="metric" data-target="42">0</p>
+              <p>States and provinces engaged</p>
+            </article>
+            <article class="soft-card">
+              <h3>Annual Community Touchpoints</h3>
+              <p class="metric" data-target="150">0</p>
+              <p>Outreach activations and events</p>
+            </article>
+            <article class="soft-card">
+              <h3>Leadership Network</h3>
+              <p class="metric" data-target="300">0</p>
+              <p>Leaders and volunteers in service</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section deep-bg" id="ministries">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Ministry Experience</p>
+            <h2>Designed Around Real Ministry Workflows</h2>
+            <p>
+              Similar to modern enterprise platforms, each ministry function is clearly organized,
+              discoverable, and easy to engage.
+            </p>
+          </div>
+          <div class="tabs reveal">
+            <div class="tab-buttons" id="tabButtons">
+              <button class="tab-btn active" data-tab="worship">Worship</button>
+              <button class="tab-btn" data-tab="teaching">Teaching</button>
+              <button class="tab-btn" data-tab="outreach">Outreach</button>
+              <button class="tab-btn" data-tab="care">Care</button>
+            </div>
+            <div class="tab-panels">
+              <article class="tab-panel active" data-tab-panel="worship">
+                <h3>Worship & Prayer</h3>
+                <p>Centralized schedule, livestream access, and weekly devotion resources.</p>
+              </article>
+              <article class="tab-panel" data-tab-panel="teaching">
+                <h3>Sermons & Teaching Library</h3>
+                <p>Topic-based sermon filtering and guided study tracks for every audience.</p>
+              </article>
+              <article class="tab-panel" data-tab-panel="outreach">
+                <h3>Community Outreach</h3>
+                <p>Event campaigns, testimony collection, and volunteer mobilization pipelines.</p>
+              </article>
+              <article class="tab-panel" data-tab-panel="care">
+                <h3>Pastoral Care</h3>
+                <p>Prayer requests, counseling touchpoints, and follow-up care workflows.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section sermon-band" id="sermons">
+        <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Recent Sermons</p>
+          <h2>Content Spotlight</h2>
+        </div>
+        <div class="sermon-rail reveal">
+          <article class="sermon-card"><h3>The Rebirth of Apostolic Christianity</h3></article>
+          <article class="sermon-card"><h3>Faith in Action</h3></article>
+          <article class="sermon-card"><h3>Living by the Spirit</h3></article>
+          <article class="sermon-card"><h3>The Principles of Headship</h3></article>
+        </div>
+        </div>
+      </section>
+
+      <section class="section map-section" id="locations">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Locations</p>
+            <h2>RCN Presence Across North America</h2>
+          </div>
+          <div class="map-shell reveal">
+            <div class="glow-dot dot-1"></div>
+            <div class="glow-dot dot-2"></div>
+            <div class="glow-dot dot-3"></div>
+            <div class="glow-dot dot-4"></div>
+            <div class="glow-dot dot-5"></div>
+            <div class="glow-dot dot-6"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container light-section" id="partnership">
+        <div class="cta reveal">
+          <div>
+            <p class="eyebrow">Partnership</p>
+            <h2>Build with Us</h2>
+            <p>
+              Support kingdom expansion through consistent giving, strategic partnerships, and
+              community impact initiatives.
+            </p>
+          </div>
+          <a href="#" class="btn btn-primary">Give Now</a>
+        </div>
+      </section>
+
+      <section class="section container light-section" id="contact">
+        <div class="newsletter reveal">
+          <h2>Stay Connected</h2>
+          <p>Get updates on sermons, events, and ministry opportunities.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email" />
+            <button class="btn btn-primary" type="button">Subscribe</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>RCN North America Design Demo</p>
+        <nav>
+          <a href="#">Home</a>
+          <a href="#about">About</a>
+          <a href="#sermons">Sermons</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </footer>
+    <script src="./script.js"></script>
+  </body>
+</html>

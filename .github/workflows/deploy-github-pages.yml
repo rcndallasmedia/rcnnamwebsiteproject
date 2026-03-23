@@ -1,0 +1,72 @@
+# Builds a static export and deploys to GitHub Pages.
+# Enable Pages: Repo → Settings → Pages → Source: GitHub Actions.
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Compute base path and site URL
+        id: site
+        shell: bash
+        run: |
+          REPO="${{ github.event.repository.name }}"
+          OWNER="${{ github.repository_owner }}"
+          if [ "$REPO" = "$OWNER.github.io" ]; then
+            echo "base_path=" >> "$GITHUB_OUTPUT"
+            echo "site_url=https://${OWNER}.github.io" >> "$GITHUB_OUTPUT"
+          else
+            echo "base_path=/${REPO}" >> "$GITHUB_OUTPUT"
+            echo "site_url=https://${OWNER}.github.io/${REPO}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install and build (static export)
+        run: |
+          npm ci
+          npm run build:static
+        env:
+          STATIC_EXPORT: "true"
+          BASE_PATH: ${{ steps.site.outputs.base_path }}
+          NEXT_PUBLIC_SITE_URL: ${{ steps.site.outputs.site_url }}
+          # Optional: set a Formspree/Basin endpoint as a repo variable
+          NEXT_PUBLIC_NEWSLETTER_FORM_ACTION: ${{ vars.NEWSLETTER_FORM_ACTION }}
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
