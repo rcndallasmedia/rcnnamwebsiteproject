@@ -8,11 +8,19 @@ import { useEffect, useId, useRef, useState } from "react";
 /** Premium ease-out curve (similar to many enterprise marketing sites) */
 const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
 
+/** Medidata-style tiles: first row green, second row navy (from reference recording) */
+function megaIconTileClass(index: number) {
+  const isGreen = index % 4 < 2;
+  return isGreen
+    ? "bg-[#134e4a] ring-[#0f3d3a]"
+    : "bg-[#0c2744] ring-[#0a1f35]";
+}
+
 function MegaMenuIcon({ index }: { index: number }) {
   const v = index % 4;
   return (
     <span
-      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#0c2744] text-white shadow-[0_1px_2px_rgba(0,0,0,0.08)] ring-1 ring-white/10"
+      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white shadow-[0_1px_3px_rgba(0,0,0,0.12)] ring-1 ring-inset ${megaIconTileClass(index)}`}
       aria-hidden
     >
       {v === 0 ? (
@@ -84,8 +92,8 @@ function MegaDropdown({
         }}
       >
         <div className="flex flex-col gap-0 sm:flex-row">
-          <div className="border-slate-100 sm:w-[min(100%,240px)] sm:border-r sm:py-8 sm:pl-6 sm:pr-6">
-            <p className="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">{item.label}</p>
+          <div className="border-slate-100 sm:w-[min(100%,260px)] sm:border-r sm:py-8 sm:pl-7 sm:pr-7">
+            <h3 className="text-xl font-bold tracking-tight text-[#0c2744]">{item.label}</h3>
             <p className="mt-3 text-sm leading-relaxed text-slate-600">{intro}</p>
           </div>
           <div className="flex-1 p-4 sm:p-6 sm:pl-6">

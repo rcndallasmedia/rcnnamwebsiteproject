@@ -33,3 +33,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# Large extracted reference frames (optional — remove this line to commit them)
+assets/reference-video/*.png
