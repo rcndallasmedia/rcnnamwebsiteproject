@@ -162,6 +162,7 @@ export const navItemSchema = z.object({
   label: z.string(),
   href: z.string(),
   children: z.array(megaMenuItemSchema).optional(),
+  megaMenuIntro: z.string().optional(),
 });
 
 export const siteSettingsSchema = z.object({

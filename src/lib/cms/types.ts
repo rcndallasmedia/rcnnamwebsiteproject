@@ -170,6 +170,8 @@ export interface NavItem {
   label: string;
   href: string;
   children?: MegaMenuItem[];
+  /** Left-column copy in the mega menu (Medidata-style intro block) */
+  megaMenuIntro?: string;
 }
 
 export interface SiteSettings {

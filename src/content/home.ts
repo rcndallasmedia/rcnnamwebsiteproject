@@ -22,6 +22,8 @@ export const homePageData: HomePageDocument = {
       {
         label: "Resources",
         href: "/resources",
+        megaMenuIntro:
+          "Teaching, media, and connection points in one place—browse sermons, join live, and share stories.",
         children: [
           {
             label: "Sermon library",

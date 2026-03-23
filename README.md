@@ -79,6 +79,10 @@ NEXT_PUBLIC_SITE_URL=https://YOUR_USER.github.io npm run build:static
 2. `parseHomePageDocument(json)` in `src/lib/cms/index.ts` to validate at the edge/build.
 3. Map fields to the same shape as `HomePageDocument` in `src/lib/cms/types.ts`.
 
+## Animation / reference sites
+
+See [`docs/ANIMATION_REFERENCE.md`](docs/ANIMATION_REFERENCE.md) for how to share screen recordings or DevTools timings so we can match motion (e.g. [Medidata](https://www.medidata.com/en/)) more closely.
+
 ## Legacy static demo
 
 The original single-file demo lives in `legacy-static/` for reference.
