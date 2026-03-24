@@ -20,23 +20,23 @@ function MegaMenuIcon({ index }: { index: number }) {
   const v = index % 4;
   return (
     <span
-      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white shadow-[0_1px_3px_rgba(0,0,0,0.12)] ring-1 ring-inset ${megaIconTileClass(index)}`}
+      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-white shadow-[0_1px_2px_rgba(0,0,0,0.1)] ring-1 ring-inset sm:h-10 sm:w-10 sm:rounded-xl ${megaIconTileClass(index)}`}
       aria-hidden
     >
       {v === 0 ? (
-        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <svg className="h-4 w-4 sm:h-[18px] sm:w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v15.512A7.98 7.98 0 016 21c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v15.512A7.98 7.98 0 0118 21a8.25 8.25 0 01-8-8.25V6.042z" />
         </svg>
       ) : v === 1 ? (
-        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <svg className="h-4 w-4 sm:h-[18px] sm:w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
         </svg>
       ) : v === 2 ? (
-        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <svg className="h-4 w-4 sm:h-[18px] sm:w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3A1.5 1.5 0 001.5 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
         </svg>
       ) : (
-        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <svg className="h-4 w-4 sm:h-[18px] sm:w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
         </svg>
       )}
@@ -76,7 +76,7 @@ function MegaDropdown({
       role="region"
       aria-hidden={!open}
       aria-label={`${item.label} menu`}
-      className="absolute left-1/2 top-full z-40 mt-4 w-[min(94vw,720px)] -translate-x-1/2"
+      className="absolute left-0 top-full z-40 mt-3 w-[min(92vw,440px)] max-w-[440px] sm:w-[440px]"
     >
       <div
         className={[
@@ -92,27 +92,27 @@ function MegaDropdown({
         }}
       >
         <div className="flex flex-col gap-0 sm:flex-row">
-          <div className="border-slate-100 sm:w-[min(100%,260px)] sm:border-r sm:py-8 sm:pl-7 sm:pr-7">
-            <h3 className="text-xl font-bold tracking-tight text-[#0c2744]">{item.label}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600">{intro}</p>
+          <div className="border-slate-100 sm:w-[min(100%,168px)] sm:shrink-0 sm:border-r sm:py-5 sm:pl-4 sm:pr-4">
+            <h3 className="text-lg font-bold leading-snug tracking-tight text-[#0c2744]">{item.label}</h3>
+            <p className="mt-2 text-xs leading-relaxed text-slate-600 sm:text-[13px]">{intro}</p>
           </div>
-          <div className="flex-1 p-4 sm:p-6 sm:pl-6">
-            <div className="grid gap-2 sm:grid-cols-2 sm:gap-3">
+          <div className="min-w-0 flex-1 p-2.5 sm:p-4 sm:pl-3">
+            <div className="grid gap-1 sm:grid-cols-2 sm:gap-1.5">
               {item.children.map((child, i) => (
                 <Link
                   key={child.href}
                   href={child.href}
                   onClick={onClose}
-                  className="group flex gap-3 rounded-lg border border-transparent p-3 transition-[background-color,border-color,box-shadow,transform] duration-200 ease-out hover:-translate-y-px hover:border-slate-200/80 hover:bg-slate-50/90 hover:shadow-md motion-reduce:hover:translate-y-0"
+                  className="group flex gap-2 rounded-lg border border-transparent p-2 sm:gap-2.5 sm:p-2.5 transition-[background-color,border-color,box-shadow,transform] duration-200 ease-out hover:-translate-y-px hover:border-slate-200/80 hover:bg-slate-50/90 hover:shadow-md motion-reduce:hover:translate-y-0"
                   style={{ transitionTimingFunction: EASE }}
                 >
                   <MegaMenuIcon index={i} />
                   <span className="min-w-0">
-                    <span className="block font-semibold text-[#0c2744] transition-colors duration-200 group-hover:text-[#0a4d6e]">
+                    <span className="block text-sm font-semibold leading-snug text-[#0c2744] transition-colors duration-200 group-hover:text-[#0a4d6e]">
                       {child.label}
                     </span>
                     {child.description ? (
-                      <span className="mt-0.5 block text-sm text-slate-500">{child.description}</span>
+                      <span className="mt-0.5 block text-xs leading-snug text-slate-500 sm:text-[13px]">{child.description}</span>
                     ) : null}
                   </span>
                 </Link>
