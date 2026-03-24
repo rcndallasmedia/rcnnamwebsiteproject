@@ -190,9 +190,6 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
                       }`}
                       aria-expanded={openMega === item.label}
                       aria-haspopup="true"
-                      onClick={() =>
-                        setOpenMega((v) => (v === item.label ? null : item.label))
-                      }
                     >
                       {item.label}
                       <svg
