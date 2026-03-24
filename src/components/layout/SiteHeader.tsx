@@ -48,10 +48,14 @@ function MegaDropdown({
   item,
   open,
   onClose,
+  onPointerEnter,
+  onPointerLeave,
 }: {
   item: NavItem;
   open: boolean;
   onClose: () => void;
+  onPointerEnter?: () => void;
+  onPointerLeave?: () => void;
 }) {
   const panelId = useId();
 
@@ -77,6 +81,8 @@ function MegaDropdown({
       aria-hidden={!open}
       aria-label={`${item.label} menu`}
       className="absolute left-0 top-full z-40 mt-3 w-[min(92vw,440px)] max-w-[440px] sm:w-[440px]"
+      onMouseEnter={onPointerEnter}
+      onMouseLeave={onPointerLeave}
     >
       <div
         className={[
@@ -182,18 +188,18 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
                   <div
                     key={item.label}
                     className="relative"
-                    onMouseEnter={() => {
-                      if (!canHover) return;
-                      clearClose();
-                      setOpenMega(item.label);
-                    }}
-                    onMouseLeave={() => {
-                      if (!canHover) return;
-                      scheduleClose();
-                    }}
                   >
                     <button
                       type="button"
+                      onMouseEnter={() => {
+                        if (!canHover) return;
+                        clearClose();
+                        setOpenMega(item.label);
+                      }}
+                      onMouseLeave={() => {
+                        if (!canHover) return;
+                        scheduleClose();
+                      }}
                       onClick={() => {
                         clearClose();
                         setOpenMega((prev) => (prev === item.label ? null : item.label));
@@ -228,6 +234,15 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
                       item={item}
                       open={openMega === item.label}
                       onClose={() => setOpenMega(null)}
+                      onPointerEnter={() => {
+                        if (!canHover) return;
+                        clearClose();
+                        setOpenMega(item.label);
+                      }}
+                      onPointerLeave={() => {
+                        if (!canHover) return;
+                        scheduleClose();
+                      }}
                     />
                   </div>
                 ) : (
