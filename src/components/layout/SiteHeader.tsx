@@ -129,6 +129,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
   const scrolled = useHeaderScrolled();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMega, setOpenMega] = useState<string | null>(null);
+  const [canHover, setCanHover] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const clearClose = () => {
@@ -139,6 +140,16 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
     clearClose();
     closeTimer.current = setTimeout(() => setOpenMega(null), 220);
   };
+
+  useEffect(() => {
+    const mql = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const syncCanHover = (e: MediaQueryList | MediaQueryListEvent) => {
+      setCanHover(e.matches);
+    };
+    syncCanHover(mql);
+    mql.addEventListener("change", syncCanHover);
+    return () => mql.removeEventListener("change", syncCanHover);
+  }, []);
 
   return (
     <header
@@ -172,13 +183,21 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
                     key={item.label}
                     className="relative"
                     onMouseEnter={() => {
+                      if (!canHover) return;
                       clearClose();
                       setOpenMega(item.label);
                     }}
-                    onMouseLeave={scheduleClose}
+                    onMouseLeave={() => {
+                      if (!canHover) return;
+                      scheduleClose();
+                    }}
                   >
                     <button
                       type="button"
+                      onClick={() => {
+                        clearClose();
+                        setOpenMega((prev) => (prev === item.label ? null : item.label));
+                      }}
                       className={`flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                         openMega === item.label
                           ? scrolled
