@@ -7,8 +7,8 @@ export function MissionSection({ mission }: { mission: MissionBlock }) {
   const gallery = mission.gallery ?? [];
 
   return (
-    <section id="mission" className="scroll-mt-24 bg-white py-20">
-      <div className="mx-auto grid max-w-[1140px] items-start gap-12 px-[4vw] lg:grid-cols-2">
+    <section id="mission" className="scroll-mt-24 border-t border-slate-200/60 bg-surface-muted/50 section-y">
+      <div className="section-inner grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
         <Reveal>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:min-h-[420px]">
             {gallery[0] ? (
@@ -42,7 +42,7 @@ export function MissionSection({ mission }: { mission: MissionBlock }) {
         <div>
           <Reveal>
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-primary">{mission.eyebrow}</p>
-            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            <h2 className="font-display mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
               {mission.title}
             </h2>
             <p className="mt-4 text-muted leading-relaxed">{mission.body}</p>
@@ -56,7 +56,7 @@ export function MissionSection({ mission }: { mission: MissionBlock }) {
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
             {mission.stats.map((s) => (
               <Reveal key={s.id}>
-                <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-lift">
+                <article className="rounded-2xl border border-slate-200/90 bg-surface p-5 shadow-lift">
                   <h3 className="text-sm font-semibold text-ink">{s.label}</h3>
                   <MetricCounter value={s.value} suffix={s.suffix ?? "+"} />
                   <p className="text-sm text-muted">{s.description}</p>

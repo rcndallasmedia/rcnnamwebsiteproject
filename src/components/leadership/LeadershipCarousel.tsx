@@ -15,10 +15,13 @@ export function LeadershipCarousel({ block }: { block: LeadershipCarouselBlock }
   }, []);
 
   return (
-    <section className="bg-white py-20">
-      <div className="mx-auto max-w-[1140px] px-[4vw]">
+    <section
+      id="leadership"
+      className="scroll-mt-24 border-t border-slate-200/60 bg-surface-muted/40 py-section md:py-section-lg"
+    >
+      <div className="section-inner">
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <h2 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">{block.title}</h2>
+          <h2 className="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">{block.title}</h2>
           <div className="flex gap-2">
             <button
               type="button"
@@ -41,7 +44,7 @@ export function LeadershipCarousel({ block }: { block: LeadershipCarouselBlock }
 
         <div
           ref={railRef}
-          className="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto touch-pan-x pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           tabIndex={0}
           aria-label="Leadership carousel"
           onKeyDown={(e) => {
@@ -58,7 +61,7 @@ export function LeadershipCarousel({ block }: { block: LeadershipCarouselBlock }
                       src={leader.image.url}
                       alt={leader.image.alt}
                       fill
-                      className="object-cover grayscale transition hover:grayscale-0"
+                      className="object-cover grayscale transition duration-300 ease-out hover:grayscale-0 motion-reduce:transition-none motion-reduce:grayscale-0"
                       sizes="220px"
                     />
                   ) : (

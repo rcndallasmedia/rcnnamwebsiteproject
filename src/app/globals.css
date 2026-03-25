@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -15,5 +19,19 @@
 
   ::selection {
     background: rgba(23, 193, 236, 0.25);
+  }
+}
+
+@layer components {
+  .section-inner {
+    @apply mx-auto w-full max-w-content px-[4vw];
+  }
+
+  .section-y {
+    @apply py-section md:py-section-lg;
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary;
   }
 }

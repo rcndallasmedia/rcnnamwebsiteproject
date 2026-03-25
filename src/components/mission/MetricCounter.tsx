@@ -15,6 +15,10 @@ export function MetricCounter({
 
   useEffect(() => {
     if (!inView) return;
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setDisplay(value);
+      return;
+    }
     const duration = 1200;
     const start = performance.now();
 

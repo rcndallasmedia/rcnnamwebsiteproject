@@ -8,7 +8,7 @@ import { useEffect, useId, useRef, useState } from "react";
 /** Premium ease-out curve (similar to many enterprise marketing sites) */
 const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
 
-/** Medidata-style tiles: first row green, second row navy (from reference recording) */
+/** Alternating tile accents for mega menu icons */
 function megaIconTileClass(index: number) {
   const isGreen = index % 4 < 2;
   return isGreen
@@ -46,19 +46,19 @@ function MegaMenuIcon({ index }: { index: number }) {
 
 function MegaDropdown({
   item,
+  panelId,
   open,
   onClose,
   onPointerEnter,
   onPointerLeave,
 }: {
   item: NavItem;
+  panelId: string;
   open: boolean;
   onClose: () => void;
   onPointerEnter?: () => void;
   onPointerLeave?: () => void;
 }) {
-  const panelId = useId();
-
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -136,6 +136,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMega, setOpenMega] = useState<string | null>(null);
   const [canHover, setCanHover] = useState(false);
+  const megaMenuBaseId = useId();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const clearClose = () => {
@@ -165,7 +166,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
           : "border-white/15 bg-[rgba(6,22,42,0.45)] text-white backdrop-blur-xl"
       }`}
     >
-      <div className="mx-auto flex w-full max-w-[1140px] items-center justify-between gap-4 px-[4vw] py-3.5">
+      <div className="section-inner flex items-center justify-between gap-4 py-3.5">
         <Link href="/" className="flex items-center gap-2.5 text-sm font-bold sm:text-base">
           <span
             className="h-3 w-3 rounded-full bg-gradient-to-br from-primary to-accent shadow-[0_0_0_6px_rgba(23,193,236,0.15)]"
@@ -183,7 +184,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
             }
           >
             <nav className="flex items-center gap-1" aria-label="Primary">
-              {settings.primaryNav.map((item) =>
+              {settings.primaryNav.map((item, navIndex) =>
                 item.children?.length ? (
                   <div
                     key={item.label}
@@ -191,6 +192,8 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
                   >
                     <button
                       type="button"
+                      id={`${megaMenuBaseId}-trigger-${navIndex}`}
+                      aria-controls={`${megaMenuBaseId}-panel-${navIndex}`}
                       onMouseEnter={() => {
                         if (!canHover) return;
                         clearClose();
@@ -204,7 +207,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
                         clearClose();
                         setOpenMega((prev) => (prev === item.label ? null : item.label));
                       }}
-                      className={`flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                      className={`focus-ring flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors duration-200 ease-out ${
                         openMega === item.label
                           ? scrolled
                             ? "bg-slate-100 text-ink"
@@ -232,6 +235,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
                     </button>
                     <MegaDropdown
                       item={item}
+                      panelId={`${megaMenuBaseId}-panel-${navIndex}`}
                       open={openMega === item.label}
                       onClose={() => setOpenMega(null)}
                       onPointerEnter={() => {
@@ -249,7 +253,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`rounded-full px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                    className={`focus-ring rounded-full px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                       scrolled
                         ? "text-ink/85 hover:bg-slate-50/90 hover:text-ink"
                         : "text-white/90 hover:bg-white/10"
@@ -265,7 +269,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
           {settings.signUpCta ? (
             <Link
               href={settings.signUpCta.href}
-              className="rounded-full bg-gradient-to-r from-primary to-accent px-4 py-2 text-sm font-semibold text-ink shadow-glass transition-[filter,transform] duration-200 ease-out hover:brightness-[1.03] hover:shadow-md active:scale-[0.98] motion-reduce:transition-none"
+              className="focus-ring rounded-full bg-gradient-to-r from-primary to-accent px-4 py-2 text-sm font-semibold text-ink shadow-glass transition-[filter,transform] duration-200 ease-out hover:brightness-[1.03] hover:shadow-md active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100"
             >
               {settings.signUpCta.label}
             </Link>
@@ -274,7 +278,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
 
         <button
           type="button"
-          className={`rounded-lg border px-3 py-2 text-sm font-medium lg:hidden ${
+          className={`focus-ring rounded-lg border px-3 py-2 text-sm font-medium lg:hidden ${
             scrolled ? "border-slate-200 text-ink" : "border-white/50 text-white"
           }`}
           aria-expanded={mobileOpen}
@@ -291,7 +295,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
           mobileOpen ? "block" : "hidden"
         } ${scrolled ? "border-slate-200 bg-white text-ink" : "bg-[rgba(6,22,42,0.92)] text-white"}`}
       >
-        <div className="mx-auto flex max-w-[1140px] flex-col gap-3 py-3">
+        <div className="section-inner flex flex-col gap-3 py-3">
           {settings.primaryNav.map((item) => (
             <div key={item.label}>
               {item.children?.length ? (

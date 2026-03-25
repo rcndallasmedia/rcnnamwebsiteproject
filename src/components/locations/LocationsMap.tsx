@@ -10,7 +10,7 @@ function MapDot({ point }: { point: MapPoint }) {
 
   const dot = (
     <span
-      className="block h-2.5 w-2.5 rounded-full bg-[#6de6ff] shadow-[0_0_0_8px_rgba(109,230,255,0.12),0_0_20px_rgba(109,230,255,0.65)] animate-pulse-dot"
+      className="block h-2.5 w-2.5 rounded-full bg-[#6de6ff] shadow-[0_0_0_8px_rgba(109,230,255,0.12),0_0_20px_rgba(109,230,255,0.65)] motion-reduce:animate-none animate-pulse-dot"
       title={point.label}
     />
   );
@@ -37,12 +37,12 @@ function MapDot({ point }: { point: MapPoint }) {
 
 export function LocationsMap({ block }: { block: LocationsMapBlock }) {
   return (
-    <section id="locations" className="scroll-mt-24 bg-white py-20">
-      <div className="mx-auto max-w-[1140px] px-[4vw]">
+    <section id="locations" className="scroll-mt-24 bg-surface section-y">
+      <div className="section-inner">
         <Reveal>
           <div className="max-w-3xl">
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-primary">{block.eyebrow}</p>
-            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            <h2 className="font-display mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
               {block.title}
             </h2>
             {block.description ? (
@@ -52,7 +52,7 @@ export function LocationsMap({ block }: { block: LocationsMapBlock }) {
         </Reveal>
 
         <Reveal>
-          <div className="relative mt-10 h-[340px] overflow-hidden rounded-[22px] border border-sky-200/60 bg-gradient-to-b from-navy-700 to-[#0a1b31] shadow-card">
+          <div className="relative mt-10 min-h-[340px] h-[min(52vh,440px)] overflow-hidden rounded-[22px] border border-sky-200/60 bg-gradient-to-b from-navy-700 to-[#0a1b31] shadow-card">
             <div
               className="pointer-events-none absolute inset-0 opacity-30"
               style={{

@@ -16,14 +16,17 @@ export function SermonCarousel({ block }: { block: SermonCarouselBlock }) {
   }, []);
 
   return (
-    <section id="sermons" className="scroll-mt-24 bg-gradient-to-b from-navy-800 to-[#0b2541] py-20 text-slate-50">
-      <div className="mx-auto max-w-[1140px] px-[4vw]">
+    <section
+      id="sermons"
+      className="scroll-mt-24 bg-gradient-to-b from-navy-800 via-[#0c2844] to-[#071a2e] py-section text-slate-50 md:py-section-lg"
+    >
+      <div className="section-inner">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-primary-soft">
               {block.eyebrow}
             </p>
-            <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">{block.title}</h2>
+            <h2 className="font-display mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">{block.title}</h2>
             {block.subtitle ? (
               <p className="mt-2 max-w-xl text-sm text-slate-300">{block.subtitle}</p>
             ) : null}
@@ -50,7 +53,7 @@ export function SermonCarousel({ block }: { block: SermonCarouselBlock }) {
 
         <div
           ref={railRef}
-          className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto touch-pan-x pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           tabIndex={0}
           aria-label="Sermon carousel"
           onKeyDown={(e) => {
@@ -70,7 +73,7 @@ export function SermonCarousel({ block }: { block: SermonCarouselBlock }) {
                     src={item.thumbnail.url}
                     alt={item.thumbnail.alt}
                     fill
-                    className="object-cover opacity-90 transition group-hover:scale-[1.03] group-hover:opacity-100"
+                    className="object-cover opacity-90 transition duration-300 ease-out group-hover:scale-[1.03] group-hover:opacity-100 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                     sizes="320px"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#071a32]/90 via-transparent to-transparent" />

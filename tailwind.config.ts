@@ -8,10 +8,26 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      maxWidth: {
+        content: "1140px",
+      },
+      spacing: {
+        section: "5rem",
+        "section-lg": "6.5rem",
+      },
+      transitionTimingFunction: {
+        out: "cubic-bezier(0.16, 1, 0.3, 1)",
+      },
       colors: {
         ink: "#071a32",
         muted: "#4f6078",
         canvas: "#f6f8fc",
+        surface: {
+          DEFAULT: "#ffffff",
+          muted: "#f1f5f9",
+          tinted: "#e8f4fc",
+          deep: "#0a1d35",
+        },
         primary: {
           DEFAULT: "#17c1ec",
           soft: "#55d7ff",
@@ -25,11 +41,18 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: [
+          "var(--font-display)",
+          "var(--font-inter)",
+          "system-ui",
+          "sans-serif",
+        ],
       },
       boxShadow: {
         card: "0 12px 28px rgba(7, 26, 50, 0.12)",
         lift: "0 8px 22px rgba(7, 26, 50, 0.06)",
         glass: "0 8px 20px rgba(9, 30, 55, 0.2)",
+        float: "0 24px 64px -16px rgba(7, 26, 50, 0.14)",
       },
       backgroundImage: {
         "hero-overlay":
