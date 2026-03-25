@@ -80,9 +80,13 @@ function MegaDropdown({
       role="region"
       aria-hidden={!open}
       aria-label={`${item.label} menu`}
-      className="absolute left-0 top-full z-40 mt-3 w-[min(92vw,440px)] max-w-[440px] sm:w-[440px]"
-      onMouseEnter={onPointerEnter}
-      onMouseLeave={onPointerLeave}
+      className={[
+        "absolute left-0 top-full z-40 mt-3 w-[min(92vw,440px)] max-w-[440px] sm:w-[440px]",
+        /* Closed: invisible panel still stacks above the page—must not capture hover or it opens the menu from random areas. */
+        open ? "pointer-events-auto" : "pointer-events-none",
+      ].join(" ")}
+      onMouseEnter={open ? onPointerEnter : undefined}
+      onMouseLeave={open ? onPointerLeave : undefined}
     >
       <div
         className={[
